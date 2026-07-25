@@ -1,10 +1,25 @@
+
+#以下は、自動生成されるようなファイルをリスト化する
+
+# エクリプスで作業するなら自動生成されるファイル
+#ただしsrcは除外していない
 bin/
 .classpath
 .project
 .settings/
 
 
+# ビルド成果物
+*.class
+target/
 
+# OS由来のゴミファイル
+.DS_Store
+Thumbs.db
 
+# ログ・一時ファイル
+*.log
+*.tmp
 
-
+#Git関係で自動生成されるもの
+.gitattributes
