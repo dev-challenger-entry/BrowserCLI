@@ -64,13 +64,17 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
              * メモリ上の住所が同じかどうかの問いかけをすることになってしまう)
              * この場合は、入力したｇがGoogleを起動させるためのｇと同じかどうかを確認したい。
              */
-            if ("g".equals(cmd)) {
+            switch (cmd) {
+            case "g":
                 Desktop.getDesktop().browse(new URI("https://google.com"));
-            } else if ("y".equals(cmd)) {
+                break;
+            case "y":
                 Desktop.getDesktop().browse(new URI("https://youtube.com"));
-            } else {
+                break;
+            default:
                 System.out.println("メインの辞書にそのコマンドはありません。");
-            }
+                break;
         }
     }
+  }
 }
