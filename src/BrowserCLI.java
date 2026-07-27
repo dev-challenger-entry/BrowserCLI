@@ -1,24 +1,28 @@
 import java.awt.Desktop;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 /*
  * コンソール入力でブラウザを起動するプログラム
  *
  * ■コマンド仕様
- * g: Googleを開く
- * y: YouTubeを開く
+ * g+エンターキー: Googleを開く、もしくは、g +「空白を好きなだけ挟む」+検索ワード+エンターキー　で検索結果を起動
+ * y+エンターキー: YouTubeを開く、もしくはｙ+「空白を好きなだけ挟む」+検索ワード+エンターキー　で検索結果を起動
  * その他: 無効入力としてエラーメッセージを表示
  * 1回切りで終了するプログラム
+ * 
+ * 
+ * 
  * 
  *
  * ■前提
  * Desktop APIが利用可能な環境で動作
  *
  * ■制約
- * ・入力は1文字のみ想定
+ * ・ｇとｙは、入力はそれぞれ1文字のみ想定
  * ・大文字入力には未対応
- * ・小文字のみ対応
+ * ・小文字のみ対応　半角小文字と全角小文字に対応
  */
 
 /* =========================
@@ -26,7 +30,7 @@ import java.util.Scanner;
  * ========================= */
 public class BrowserCLI { // ここをBrowserCLIという名前にしました
     public static void main(String[] args) throws Exception {
-        System.out.println("メインの入り口です。g(Google) または y(YouTube) を入力してください。");
+        System.out.println("コンソール画面にg(Google) または y(YouTube) を入力してEnterしてください。\nもしくは空白を挟んで検索ワードを入れてからエンターキーを押すと、\n検索結果画面になります。");
 
         /* =========================
          *      安全チェック
@@ -57,6 +61,10 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
             //cmdは独自に作った変数名で、そこにキーボードから文字を読み取る処理の結果を代入して保存する
             // sc.next() = キーボードから次の 1 単語を取得
             String cmd = sc.next();
+            // sc.next()は、空白か改行までの１文字として認識するので、
+            //空白を開けずに検索ワードを入れるとJavaは「ｇ検索ワード」という６文字を一度に認識してしまいデフォルト節に行く。   
+            String rest = sc.nextLine().trim(); // 同じ行の残り(検索ワード部分)を取得。
+            //トリムすることで、ｙ＋「空白」でエンターを押したとき、検索結果がありませんという表示にならないため必要。
             
             // コマンド（命令）による分岐
             /*
@@ -66,10 +74,22 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
              */
             switch (cmd) {
             case "g":
-                Desktop.getDesktop().browse(new URI("https://google.com"));
+            case "ｇ":   	
+                if (rest.isEmpty()) {
+                    Desktop.getDesktop().browse(new URI("https://google.com"));
+                } else {
+                    String query = URLEncoder.encode(rest, "UTF-8");
+                    Desktop.getDesktop().browse(new URI("https://www.google.com/search?q=" + query));
+                }
                 break;
             case "y":
-                Desktop.getDesktop().browse(new URI("https://youtube.com"));
+            case "ｙ":
+                if (rest.isEmpty()) {
+                    Desktop.getDesktop().browse(new URI("https://youtube.com"));
+                } else {
+                    String query = URLEncoder.encode(rest, "UTF-8");
+                    Desktop.getDesktop().browse(new URI("https://www.youtube.com/results?search_query=" + query));
+                }
                 break;
             default:
                 System.out.println("メインの辞書にそのコマンドはありません。");
