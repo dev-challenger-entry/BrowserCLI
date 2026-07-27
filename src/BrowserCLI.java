@@ -57,6 +57,11 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
         // Javaではクラス（設計図）からnew演算子でインスタンス（実体）を生成する必要があるため、
         // ここで変数を用意してnewによる実体化処理を行う
         try (Scanner sc = new Scanner(System.in)) {
+        	
+        //１回きりのプログラムから、何度も可能なプログラムにするため、真の間は以下の処理をせよという命令を入れる
+        	while (true) {
+        		 System.out.println("コマンドを入力してください（終了するには eか終了を入力）");
+        	
  
             //cmdは独自に作った変数名で、そこにキーボードから文字を読み取る処理の結果を代入して保存する
             // sc.next() = キーボードから次の 1 単語を取得
@@ -66,6 +71,12 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
             String rest = sc.nextLine().trim(); // 同じ行の残り(検索ワード部分)を取得。
             //トリムすることで、ｙ＋「空白」でエンターを押したとき、検索結果がありませんという表示にならないため必要。
             
+            
+            //cmdの機能が定義されたので、この時点でWhile文の終了条件を記述可能
+            if (cmd.equals("e") || cmd.equals("ｅ") || cmd.equals("終了")) {
+                System.out.println("終了します。");
+                break;
+            }
             // コマンド（命令）による分岐
             /*
              * 文字列比較はequalsを使う(==を使うと参照比較になるから使用できない。
@@ -97,4 +108,7 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
         }
     }
   }
+        
+    }
 }
+               
