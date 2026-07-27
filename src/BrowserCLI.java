@@ -64,7 +64,7 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
         	
         		// ユーザーの入力を1行まるごと取得し、コマンド部分と検索ワード部分に分割する
         		// nextLine()を使うことで、next()とnextLine()の混在によるバッファの読み残し問題も回避できる
-        		String line = sc.nextLine().trim();
+        		String line = sc.nextLine().replace("　", " ").trim();
             
         		if (line.isEmpty()) {
         		    System.out.println("何も入力されていません。もう一度入力してください。");
