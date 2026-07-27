@@ -7,7 +7,7 @@ Javaを用いたアプリ開発の手順をあとから復習できるように�
 　Javaのバージョンは21
 
 
-■動作確認手順
+■動作確認準備
 
 【Eclipseで実行する場合】
 ■前提：クローン直後の状態について
@@ -38,28 +38,34 @@ bin/, .classpath, .project, .settings/（Eclipseが自動生成するファイ�
 5. Eclipseの画面内で、srcフォルダ内へ、コピー＆ペーストした場合はリフレッシュは不要のためこれで準備は終了です
 
 【ターミナルの場合】
-　特別なセットアップは不要（javac / java コマンドで直接実行可能）
+　※すでにEclipseをインストールしていた場合は、特に準備は不要であるがそうでない場合の手順
+　java --versionと入力し、Javaがインストールされているかどうかを確認
+　インストールされていない場合は、実行ができない
+　インストールコマンドは、Windowsでは、winget install Microsoft.OpenJDK.21
+　インストール終了後、ターミナルは一度閉じる。閉じることでパソコンが環境変数を反映する
+　開き直したあとに、再度 java --version と入力して確認
 
 ■動作確認手順（セットアップ後・2回目以降も共通）
 
 【Eclipseで実行する場合】
-1. GoogleStart.java を右クリック → 「実行」→「Java アプリケーション」を選択
-2. コンソールビューに「メインの入り口です。g(Google) または y(YouTube) を
-   入力してください。」と表示される
-3. コンソール上で g または y を入力してEnter
+1. BrowserCLI.java を右クリック → 「実行」→「Java アプリケーション」を選択
+2. コンソールビューに「コンソール画面にg(Google) または y(YouTube) を入力してEnterしてください。
+もしくは空白を挟んで検索ワードを入れてからエンターキーを押すと、
+検索結果画面になります。」と表示される
+3. その下に、カーソルを当てて左クリック。あとは指示通りにする
 4. ブラウザでGoogle（またはYouTube）が起動すれば成功
 5. 一回きりのプログラムなので、もう１度YouTube等を使いたいときは「実行」からやり直す
 
 【ターミナルで実行する場合】
 1. ターミナル（コマンドプロンプト／PowerShell）を開く
-2. GoogleStart.java があるフォルダに移動する
-   例：cd C:\Users\xxxx\workspace\GoogleStart\src
-3. javac GoogleStart.java
-   → 同じフォルダに GoogleStart.class が生成される（.gitignoreで除外対象）
-4. java GoogleStart
+2. BrowserCLI.java があるフォルダに移動する
+　 例：cd C:\Users\xxxx\workspace\？？？？？\src
+3. javac BrowserCLI.java
+   → 同じフォルダに BrowserCLI.class が生成される（.gitignoreで除外対象）
+4. java BrowserCLIで実行するとプログラムが起動する
 5. g または y を入力してEnter
 6. ブラウザでGoogle（またはYouTube）が起動すれば成功
-7．一回きりのプログラムなので、もう一度プログラムを実行したいときは、4の手順からやり直す
+7.一回きりのプログラムなので、もう一度プログラムを実行したいときは、4の手順からやり直す
 
 ■補足
 ・Eclipseはコンパイル済みの .class を bin フォルダに自動生成するが、
