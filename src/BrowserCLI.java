@@ -62,16 +62,30 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
         	while (true) {
         		 System.out.println("コマンドを入力してください（終了するには eか終了を入力）");
         	
- 
-            //cmdは独自に作った変数名で、そこにキーボードから文字を読み取る処理の結果を代入して保存する
-            // sc.next() = キーボードから次の 1 単語を取得
-            String cmd = sc.next();
-            // sc.next()は、空白か改行までの１文字として認識するので、
-            //空白を開けずに検索ワードを入れるとJavaは「ｇ検索ワード」という６文字を一度に認識してしまいデフォルト節に行く。   
-            String rest = sc.nextLine().trim(); // 同じ行の残り(検索ワード部分)を取得。
-            //トリムすることで、ｙ＋「空白」でエンターを押したとき、検索結果がありませんという表示にならないため必要。
+        		// ユーザーの入力を1行まるごと取得し、コマンド部分と検索ワード部分に分割する
+        		// nextLine()を使うことで、next()とnextLine()の混在によるバッファの読み残し問題も回避できる
+        		String line = sc.nextLine().trim();
             
+        		if (line.isEmpty()) {
+        		    System.out.println("何も入力されていません。もう一度入力してください。");
+        		    continue; // while文の先頭に戻り、再入力を促す
+        		}
+
+        		String cmd;
+        		String rest;
+
+        		int spaceIndex = line.indexOf(' ');
+        		if (spaceIndex == -1) {
+        		    // 空白がない場合は入力全体がコマンド
+        		    cmd = line;
+        		    rest = "";
+        		} else {
+        		    // 最初の空白より前がコマンド、それ以降が検索ワード
+        		    cmd = line.substring(0, spaceIndex);
+        		    rest = line.substring(spaceIndex + 1).trim();
+        		}
             
+        		
             //cmdの機能が定義されたので、この時点でWhile文の終了条件を記述可能
             if (cmd.equals("e") || cmd.equals("ｅ") || cmd.equals("終了")) {
                 System.out.println("終了します。");
@@ -79,9 +93,7 @@ public class BrowserCLI { // ここをBrowserCLIという名前にしました
             }
             // コマンド（命令）による分岐
             /*
-             * 文字列比較はequalsを使う(==を使うと参照比較になるから使用できない。
-             * メモリ上の住所が同じかどうかの問いかけをすることになってしまう)
-             * この場合は、入力したｇがGoogleを起動させるためのｇと同じかどうかを確認したい。
+
              */
             switch (cmd) {
             case "g":
