@@ -54,7 +54,7 @@ bin/, .classpath, .project, .settings/（Eclipseが自動生成するファイ�
 検索結果画面になります。」と表示される
 3. その下に、カーソルを当てて左クリック。あとは指示通りにする
 4. ブラウザでGoogle（またはYouTube）が起動すれば成功
-5. 一回きりのプログラムなので、もう１度YouTube等を使いたいときは「実行」からやり直す
+
 
 【ターミナルで実行する場合】
 1. ターミナル（コマンドプロンプト／PowerShell）を開く
@@ -65,7 +65,7 @@ bin/, .classpath, .project, .settings/（Eclipseが自動生成するファイ�
 4. java BrowserCLIで実行するとプログラムが起動する
 5. g または y を入力してEnter
 6. ブラウザでGoogle（またはYouTube）が起動すれば成功
-7.一回きりのプログラムなので、もう一度プログラムを実行したいときは、4の手順からやり直す
+
 
 ■補足
 ・Eclipseはコンパイル済みの .class を bin フォルダに自動生成するが、
