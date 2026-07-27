@@ -63,7 +63,7 @@ bin/, .classpath, .project, .settings/（Eclipseが自動生成するファイ�
 3. javac BrowserCLI.java
    → 同じフォルダに BrowserCLI.class が生成される（.gitignoreで除外対象）
 4. java BrowserCLIで実行するとプログラムが起動する
-5. g または y を入力してEnter
+5. g または y を入力してEnter　詳しくはターミナル画面の指示通りに
 6. ブラウザでGoogle（またはYouTube）が起動すれば成功
 
 
